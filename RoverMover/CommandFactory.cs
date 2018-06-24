@@ -4,17 +4,22 @@ using System.Collections.Generic;
 
 namespace RoverMover
 {
+    public interface ICommandFactory
+    {
+        ICommand GetCommand(char command);
+    }
+
     /// <summary>
     /// This factory is used to build commands executed on a rover
     /// </summary>
-    public class CommandFactory
+    public class CommandFactory : ICommandFactory
     {
         // Available types of command
-        private IDictionary<char, Command> CommandBag;
+        private IDictionary<char, ICommand> CommandBag;
 
         public CommandFactory()
         {
-            CommandBag = new Dictionary<char, Command>
+            CommandBag = new Dictionary<char, ICommand>
             {
                 {'L', new LeftCommand()},
                 {'M', new MoveCommand()},
@@ -27,9 +32,9 @@ namespace RoverMover
         /// </summary>
         /// <param name="command">Valid values are L, M, R</param>
         /// <returns></returns>
-        public Command GetCommand(char command)
+        public ICommand GetCommand(char command)
         {
-            Command result;
+            ICommand result;
 
             if (CommandBag.TryGetValue(command, out result))
             {

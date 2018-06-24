@@ -3,8 +3,8 @@
     /// <summary>
     /// This reprents an abstract command structure
     /// </summary>
-    public abstract class Command
+    public interface ICommand
     {
-        public abstract void Execute(Rover rover);
+        void Execute(Rover rover);
     }
 }

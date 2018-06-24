@@ -4,9 +4,9 @@ namespace RoverMover
 {
     public class RoverManager
     {
-        private readonly CommandFactory commandFactory;
+        private readonly ICommandFactory commandFactory;
 
-        public RoverManager(CommandFactory commandFactory) {
+        public RoverManager(ICommandFactory commandFactory) {
             this.commandFactory = commandFactory;
         }
 

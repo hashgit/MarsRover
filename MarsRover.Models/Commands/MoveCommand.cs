@@ -6,7 +6,7 @@ namespace MarsRover.Models.Commands
     /// <summary>
     /// This command moves a rover one step ahead
     /// </summary>
-    public class MoveCommand : Command
+    public class MoveCommand : ICommand
     {
         private readonly IDictionary<DirectionE, Action<Rover>> MovementActions;
 
@@ -25,7 +25,7 @@ namespace MarsRover.Models.Commands
         /// <summary>
         /// Move the rover if it is not facing the edge
         /// </summary>
-        public override void Execute(Rover rover)
+        public void Execute(Rover rover)
         {
             if (!rover.IsEdging())
                 MovementActions[rover.Direction](rover);
